@@ -4,6 +4,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import UploadIcon from "@mui/icons-material/Upload";
 import Papa from "papaparse";
+import { Dashboard } from "./components/Dashboard/Dashboard";
 
 interface CsvData {
   [key: string]: string; // Assuming each row is an object with string keys and values
@@ -52,7 +53,7 @@ function App() {
         <h2>Upload CSV for Analysis</h2>
       </div>
       {isAnalysisPage ? (
-        <div>Hello</div>
+        <Dashboard />
       ) : (
         <div
           style={{
