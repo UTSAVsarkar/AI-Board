@@ -1,25 +1,68 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef } from "react";
+import "./App.css";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import UploadIcon from "@mui/icons-material/Upload";
 
 function App() {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleFileUpload = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      console.log("File selected:", file.name);
+      console.log(file);
+      // Further file processing logic here
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Stack spacing={2} sx={{ height: "100vh" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          background: "black",
+          color: "white",
+        }}
+      >
+        <h2>Upload CSV for Analysis</h2>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexGrow: 1,
+        }}
+      >
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          onChange={handleFileChange}
+        />
+        <Button
+          variant="contained"
+          startIcon={<UploadIcon style={{ fontSize: "2rem" }} />}
+          color="success"
+          onClick={handleFileUpload}
+          sx={{
+            padding: "12px 24px", // Adjust padding for height and width
+            fontSize: "1.25rem", // Adjust font size
+            minWidth: "150px", // Set a minimum width
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <b>Upload</b>
+        </Button>
+      </div>
+    </Stack>
   );
 }
 
