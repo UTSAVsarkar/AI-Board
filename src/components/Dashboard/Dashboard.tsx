@@ -42,7 +42,7 @@ export const Dashboard = () => {
       <Stack
         sx={{
           width: "100%",
-          flex: 1, // Take remaining space
+          flex: 1,
           padding: 2,
         }}
       >

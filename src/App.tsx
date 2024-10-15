@@ -3,6 +3,7 @@ import "./App.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import UploadIcon from "@mui/icons-material/Upload";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Papa from "papaparse";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 
@@ -50,7 +51,21 @@ function App() {
           color: "white",
         }}
       >
-        <h2>Upload CSV for Analysis</h2>
+        {isAnalysisPage && (
+          <Button
+            variant="outlined"
+            startIcon={<ArrowBackIosNewIcon />}
+            style={{
+              position: "absolute", // Set the button to absolute positioning
+              left: "16px", // Adjust the position as needed
+              top: "15px",
+            }}
+            onClick={() => setIsAnalysisPage(false)}
+          >
+            Delete
+          </Button>
+        )}
+        <h2>{isAnalysisPage ? "Your Dashboard" : "Upload CSV for Analysis"}</h2>
       </div>
       {isAnalysisPage ? (
         <Dashboard />
